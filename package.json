@@ -1,0 +1,21 @@
+{
+  "name": "app-topicos",
+  "version": "1.0.0",
+  "description": "Aplicación Android de CRUD de usuarios",
+  "main": "index.js",
+  "scripts": {
+    "android": "gradlew :app:assembleDebug && adb install -r app/build/outputs/apk/debug/app-debug.apk && adb shell am start -n com.example.application/.MainActivity",
+    "build": "gradlew :app:assembleDebug",
+    "install": "adb install -r app/build/outputs/apk/debug/app-debug.apk",
+    "start": "adb shell am start -n com.example.application/.MainActivity",
+    "clean": "gradlew clean",
+    "test": "gradlew :app:test"
+  },
+  "keywords": [
+    "android",
+    "room",
+    "compose"
+  ],
+  "author": "",
+  "license": "MIT"
+}

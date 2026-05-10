@@ -46,7 +46,7 @@ class UserTest {  // ✅ Nombre en PascalCase
         )
         val idUserTest = dao.insertar(user)
         val result = dao.consulta("ana@test.com")
-        val userConId = user.copy(idUser = idUserTest)
+        val userConId = user.copy(idUser = idUserTest.toInt())
         dao.eliminar(userConId)
 
         assertNull(dao.consulta("x@t.com"))
@@ -70,16 +70,17 @@ class UserTest {  // ✅ Nombre en PascalCase
     }
 
     @Test
-    fun eliminarUsuario() = runTest {  // ✅ Sin ": Unit"
+    fun eliminarUsuario() = runTest {
         val user = Usuario(name = "X", email = "x@t.com", password = "1", descrip = "", image = "")
         dao.insertar(user)
 
-        // Verificar que se insertó correctamente
         assertNotNull(dao.consulta("x@t.com"))
 
-        dao.eliminar(user)
+        val userRecord = dao.consulta("x@t.com")
+        if (userRecord != null) {
+            dao.eliminar(userRecord)
+        }
 
-        // ✅ CORREGIDO: Después de eliminar debe ser null
         assertNull("Tras eliminar, la consulta debe retornar null", dao.consulta("x@t.com"))
     }
 }
