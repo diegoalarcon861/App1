@@ -1,8 +1,12 @@
 package com.example.application.data
 
 import com.example.application.data.DAO.userDAO
+import com.example.application.data.DAO.postDAO
 
-class UserRepository(private val userDao: userDAO) {
+class UserRepository(
+    private val userDao: userDAO,
+    private val postDao: postDAO,
+) {
     
     suspend fun insertarUsuario(usuario: Usuario): Long {
         return userDao.insertar(usuario)
@@ -30,5 +34,33 @@ class UserRepository(private val userDao: userDAO) {
 
     suspend fun actualizarUsuario(usuario: Usuario) {
         userDao.actualizar(usuario)
+    }
+
+    suspend fun insertarPost(post: Post): Long {
+        return postDao.insertar(post)
+    }
+
+    suspend fun insertarMultiplesPosts(posts: List<Post>) {
+        postDao.insertarVariedad(posts)
+    }
+
+    suspend fun obtenerTodosLosPosts(): List<Post> {
+        return postDao.obtenerTodos()
+    }
+
+    suspend fun obtenerPostPorId(id: Int): Post? {
+        return postDao.obtenerPorId(id)
+    }
+
+    suspend fun obtenerPostsPorUsuario(idUser: Int): List<Post> {
+        return postDao.obtenerPorUsuario(idUser)
+    }
+
+    suspend fun actualizarPost(post: Post) {
+        postDao.actualizar(post)
+    }
+
+    suspend fun eliminarPost(post: Post) {
+        postDao.eliminar(post)
     }
 }

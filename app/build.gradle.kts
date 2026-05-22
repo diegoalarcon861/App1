@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.activity.compose)
+    implementation("io.coil-kt:coil-compose:2.7.0")
 
     // ✅ Core y Lifecycle
     implementation(libs.androidx.core.ktx)
